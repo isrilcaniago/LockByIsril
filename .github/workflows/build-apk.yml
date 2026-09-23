@@ -45,6 +45,9 @@ jobs:
       - name: Apply v1.1 fixes
         run: python3 ci/apply-fixes-v1.1.py
 
+      - name: Apply v1.2 fixes
+        run: python3 ci/apply-fixes-v1.2.py
+
       - name: Build APK
         working-directory: extracted/LockByIsril
         run: gradle :app:assembleDebug
@@ -52,16 +55,16 @@ jobs:
       - name: Package patched source
         run: |
           cd extracted
-          zip -qr ../LockByIsril_Source_v1.1.zip LockByIsril
+          zip -qr ../LockByIsril_Source_v1.2.zip LockByIsril
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: LockByIsril-v1.1-APK
+          name: LockByIsril-v1.2-APK
           path: extracted/LockByIsril/app/build/outputs/apk/debug/app-debug.apk
 
       - name: Upload patched source
         uses: actions/upload-artifact@v4
         with:
-          name: LockByIsril-v1.1-Source
-          path: LockByIsril_Source_v1.1.zip
+          name: LockByIsril-v1.2-Source
+          path: LockByIsril_Source_v1.2.zip
